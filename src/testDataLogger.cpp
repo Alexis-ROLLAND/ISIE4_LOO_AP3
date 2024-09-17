@@ -5,10 +5,11 @@
 
 int main(void){
 
-    event_t myEvent{};
+    
+    Event   myEvent{};
 
-    myEvent.Level = Level_t::WARNING;
-    myEvent.what = "Warning event";
+    myEvent.setLevel(Event::level_t::WARNING);
+    myEvent.setWhat("Warning event");
         
     VectorDataLogger    myVectorDataLogger{};
 
@@ -19,7 +20,7 @@ int main(void){
         std::println("Exception catched ({}) OK.",e.what());
     }
 
-    myEvent.date = std::chrono::system_clock{}.now();
+    myEvent.setDate(std::chrono::system_clock{}.now());
 
     try{
         myVectorDataLogger.AddEvent(myEvent);
@@ -28,6 +29,9 @@ int main(void){
         std::println("Exception catched ({}) NOT OK.",e.what());
     }
 
+    std::println("toString = {:s}",myEvent.toString());
+
+    
 }
 
 

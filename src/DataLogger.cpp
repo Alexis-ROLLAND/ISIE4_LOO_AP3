@@ -1,12 +1,12 @@
 #include "DataLogger.hpp"
 
 //-----------------------------------------------------------------------------
-void    VectorDataLogger::AddEvent(event_t &evt, bool setInternalTime){
+void    VectorDataLogger::AddEvent(Event &evt, bool setInternalTime){
     if (setInternalTime){
-        evt.date = this->getInternalClock();
+        evt.setDate(this->getInternalClock());
     }
     else{
-        if (evt.date.time_since_epoch() <= 1min) throw std::invalid_argument{"Date of event not provided."};
+        if (evt.getDate().time_since_epoch() <= 1min) throw std::invalid_argument{"Date of event not provided."};
     }   
 
     this->log.push_back(evt);

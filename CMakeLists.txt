@@ -19,7 +19,7 @@ message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 
 include_directories(include)
 
-add_executable(testDataLogger src/testDataLogger.cpp src/DataLogger.cpp)
+add_executable(testDataLogger src/testDataLogger.cpp src/DataLogger.cpp src/Event.cpp)
 
 
 
