@@ -10,12 +10,11 @@
 
 using namespace     std::chrono_literals;
 
-
 //-----------------------------------------------------------------------------
 /**
  * Class DataLogger
  * 
- * Not Sortable generic data logger
+ * Non Sortable generic data logger
  */
 class   DataLogger{
     private:

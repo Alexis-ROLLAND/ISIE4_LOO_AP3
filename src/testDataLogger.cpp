@@ -51,6 +51,10 @@ TEST_CASE("Test VectorDataLogger"){
 
         myEvent.setLevel(Event::level_t::INFO);
         myEvent.setWhat("CBA - Event Number 1");
+
+        // Check exception throwing if date is not valid
+        CHECK_THROWS_AS(myLogger.AddEvent(myEvent, false),std::invalid_argument);
+
         myEvent.setDate(std::chrono::system_clock{}.now());
 
         myLogger.AddEvent(myEvent);
@@ -139,6 +143,10 @@ TEST_CASE("Test FileDataLogger"){
 
     myEvent.setLevel(Event::level_t::INFO);
     myEvent.setWhat("CBA - Event Number 1");
+
+    // Check exception throwing if date is not valid
+    CHECK_THROWS_AS(myLogger.AddEvent(myEvent, false),std::invalid_argument);
+
     myEvent.setDate(std::chrono::system_clock{}.now());
     myLogger.AddEvent(myEvent);
     CHECK(std::filesystem::exists(FileName));

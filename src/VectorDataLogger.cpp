@@ -6,7 +6,7 @@ void    VectorDataLogger::AddEvent(Event &evt, bool setInternalTime){
         evt.setDate(this->getInternalClock());
     }
     else{
-        if (evt.getDate().time_since_epoch() <= 1min) throw std::invalid_argument{"Date of event not provided."};
+        if (evt.getDate() == Event::date_of_event_t{}) throw std::invalid_argument{"Date of event not provided."};
     }   
 
     this->log.push_back(evt);
