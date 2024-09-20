@@ -25,7 +25,7 @@ std::size_t FileDataLogger::getNbEvents(){
     std::ifstream logstream(this->getFilePath());
     std::string line{};
 
-    int nbLines= 0;  // Initializing a variable to count lines
+    unsigned int nbLines= 0;  // Initializing a variable to count lines
 
     while (std::getline(logstream, line)) nbLines++;
 

@@ -7,8 +7,7 @@ std::string Event::getStringLevel(level_t level) const noexcept{
     case level_t::ERROR : return "ERROR";break;
     case level_t::INFO : return "INFO";break;
     case level_t::WARNING : return "WARNING";break;
-    default:
-        return "__err__level_not_defined__";
+    default: return "__err__level_not_defined__";
     }
 }
 //-----------------------------------------------------------------------------

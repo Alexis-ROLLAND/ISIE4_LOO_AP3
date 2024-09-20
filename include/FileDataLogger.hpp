@@ -18,7 +18,7 @@ private:
     std::filesystem::path getFilePath() const noexcept {return this->logFilePath;}; 
 public:
     FileDataLogger() = delete;
-    explicit FileDataLogger(std::string FileName):logFilePath{FileName}{};
+    explicit FileDataLogger(const std::string &FileName):logFilePath{FileName}{};
     virtual ~FileDataLogger() = default;
 
     virtual void    AddEvent(Event &evt, bool setInternalTime = false) override;     
