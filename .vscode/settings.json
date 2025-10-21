@@ -42,6 +42,9 @@
         "stdexcept": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp",
-        "print": "cpp"
+        "print": "cpp",
+        "hash_map": "cpp",
+        "list": "cpp",
+        "iterator": "cpp"
     }
 }
