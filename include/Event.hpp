@@ -21,8 +21,9 @@ class Event {
     enum class level_t {
         INFO,    /**< Event criticity = INFO */
         WARNING, /**< Event criticity = WARNING */
-        ERROR
-    }; /**< Event criticity = ERROR */
+        ERROR    /**< Event criticity = ERROR */
+    };
+
   private:
     date_of_event_t _date{}; /**< Event's full date (date and time) */
     std::string _what{};     /**< Event's description  */
@@ -39,9 +40,14 @@ class Event {
 
   public:
     /**
-     * @brief Default CTOR - defaulted
+     * @brief Ctors / Dtors rule of zero
      */
-    Event() = default;
+    Event() = default;                                  /**< Default constructor */
+    Event(const Event &other) = default;                /**< Copy constructor */
+    Event &operator=(const Event &other) = default;     /**< Copy assignment operator */
+    Event(Event &&other) noexcept = default;            /**< Move constructor */
+    Event &operator=(Event &&other) noexcept = default; /**< Move assignment operator */
+    virtual ~Event() = default;                         /**< Destructor */
     /**
      * @brief "Standard" CTOR
      *
@@ -51,11 +57,6 @@ class Event {
      */
     Event(const date_of_event_t &date, const std::string &what, level_t level)
         : _date{date}, _what{what}, _level{level} {};
-
-    /**
-     * DTOR - defaulted
-     */
-    virtual ~Event() = default;
 
     /**
      * @brief getters
@@ -78,5 +79,6 @@ class Event {
      */
     [[nodiscard]] std::string toString() const noexcept;
 };
-std::ostream &operator<<(std::ostream &os, const Event &obj);
-#endif /*  __EVENT_HPP__ */
+std::ostream &operator<<(std::ostream &os,
+                         const Event &obj); /**< Overloaded output stream operator for Event objects */
+#endif                                      /*  __EVENT_HPP__ */
