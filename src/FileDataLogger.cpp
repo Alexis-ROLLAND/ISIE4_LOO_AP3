@@ -2,11 +2,8 @@
 
 //-----------------------------------------------------------------------------
 void FileDataLogger::AddEvent(Event &evt, bool setInternalTime) {
-    if (setInternalTime) {
-        evt.setDate(this->getInternalClock());
-    } else {
-        if (evt.getDate() == Event::date_of_event_t{}) throw std::invalid_argument{"Date of event not provided."};
-    }
+
+    this->ManageEventDate(evt, setInternalTime);
 
     std::ofstream logstream(this->getFilePath(),
                             std::ios::app); /** Open in append mode - No need to close : RAII object */

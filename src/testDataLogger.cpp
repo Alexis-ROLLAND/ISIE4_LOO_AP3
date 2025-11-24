@@ -74,7 +74,10 @@ TEST_CASE("Test VectorDataLogger") {
         myEvent.setWhat("CBA - Event Number 1");
 
         // Check exception throwing if date is not valid
-        CHECK_THROWS_AS(myLogger.AddEvent(myEvent, false), std::invalid_argument);
+        CHECK_THROWS_WITH_AS(myLogger.AddEvent(myEvent, false), "Date of event not provided.", std::invalid_argument);
+
+        myEvent.setDate(std::chrono::system_clock{}.now());
+        CHECK_THROWS_WITH_AS(myLogger.AddEvent(myEvent, true), "Date of event already set.", std::invalid_argument);
 
         myEvent.setDate(std::chrono::system_clock{}.now());
 

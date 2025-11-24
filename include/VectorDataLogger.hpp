@@ -10,8 +10,12 @@ class VectorDataLogger : public SortableDataLogger {
     std::vector<Event> log{}; /**< Vector to store events */
 
   public:
-    VectorDataLogger() = default;
-    virtual ~VectorDataLogger() = default;
+    VectorDataLogger() = default;                                             /**< Default constructor */
+    VectorDataLogger(const VectorDataLogger &other) = default;                /**< Copy constructor */
+    VectorDataLogger &operator=(const VectorDataLogger &other) = default;     /**< Copy assignment operator */
+    VectorDataLogger(VectorDataLogger &&other) noexcept = default;            /**< Move constructor */
+    VectorDataLogger &operator=(VectorDataLogger &&other) noexcept = default; /**< Move assignment operator */
+    virtual ~VectorDataLogger() = default;                                    /**< Destructor */
 
     /**
      * @brief Add an event to the logger

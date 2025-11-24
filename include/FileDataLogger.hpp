@@ -17,9 +17,13 @@ class FileDataLogger : public DataLogger {
     const std::filesystem::path logFilePath{};                                        /**< Path to the log file */
     std::filesystem::path getFilePath() const noexcept { return this->logFilePath; }; /**< Get the log file path */
   public:
-    FileDataLogger() = delete;
-    explicit FileDataLogger(const std::string &FileName) : logFilePath{FileName} {};
-    virtual ~FileDataLogger() = default;
+    FileDataLogger() = delete;                                            /**< Default constructor - deleted */
+    FileDataLogger(const FileDataLogger &other) = default;                /**< Copy constructor */
+    FileDataLogger &operator=(const FileDataLogger &other) = default;     /**< Copy assignment operator */
+    FileDataLogger(FileDataLogger &&other) noexcept = default;            /**< Move constructor */
+    FileDataLogger &operator=(FileDataLogger &&other) noexcept = default; /**< Move assignment operator */
+    explicit FileDataLogger(const std::string &FileName) : logFilePath{FileName} {}; /**< "Standard" CTOR */
+    virtual ~FileDataLogger() = default;                                             /**< Destructor */
 
     /**
      * @brief Add an event to the logger

@@ -2,11 +2,7 @@
 
 //-----------------------------------------------------------------------------
 void VectorDataLogger::AddEvent(Event &evt, bool setInternalTime) {
-    if (setInternalTime) {
-        evt.setDate(this->getInternalClock());
-    } else {
-        if (evt.getDate() == Event::date_of_event_t{}) throw std::invalid_argument{"Date of event not provided."};
-    }
+    this->ManageEventDate(evt, setInternalTime);
 
     this->log.push_back(evt);
 }
