@@ -7,17 +7,51 @@
 //-----------------------------------------------------------------------------
 class VectorDataLogger : public SortableDataLogger {
   private:
-    std::vector<Event> log{};
+    std::vector<Event> log{}; /**< Vector to store events */
 
   public:
     VectorDataLogger() = default;
     virtual ~VectorDataLogger() = default;
 
+    /**
+     * @brief Add an event to the logger
+     *
+     * @param evt The event to add
+     * @param setInternalTime If true, set the event's time to the internal clock's current time
+     */
     virtual void AddEvent(Event &evt, bool setInternalTime = false) override;
+
+    /**
+     * @brief Dump the log contents
+     *
+     */
     virtual void dumpLog() override;
+
+    /**
+     * @brief Get the Number of Events object
+     * @return std::size_t : number of events in the log
+     */
     [[nodiscard]] virtual std::size_t getNbEvents() override { return this->log.size(); };
+
+    /**
+     * @brief Sort the log by date
+     *
+     * @param ascending If true, sort in ascending order; otherwise, descending
+     */
     virtual void sortByDate(bool ascending = true) override;
+
+    /**
+     * @brief Sort the log by criticity
+     *
+     * @param ascending If true, sort in ascending order; otherwise, descending
+     */
     virtual void sortByCriticity(bool ascending = true) override;
+
+    /**
+     * @brief Sort the log by what
+     *
+     * @param ascending If true, sort in ascending order; otherwise, descending
+     */
     virtual void sortByWhat(bool ascending = true) override;
 };
 
